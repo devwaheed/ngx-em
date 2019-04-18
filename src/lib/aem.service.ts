@@ -10,7 +10,8 @@ export class AemService {
   public setValue(key, value) {
     this.keys[key] = value;
   }
-  getValue(key){
+
+  getValue(key) {
     return this.keys[key];
   }
 

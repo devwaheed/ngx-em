@@ -4,7 +4,7 @@ import { AemService } from './aem.service';
 @Component({
   selector: 'lib-ngx-aem',
   template: `
-    <div>
+    <div *ngIf="aemService.getValue(key).show">
       <ng-content></ng-content>
     </div>
   `,
@@ -21,8 +21,8 @@ export class NgxAemComponent implements OnInit {
     this.setDefaultValue();
   }
 
-  private setDefaultValue(){
-    if(this.key && this.key.trim()){
+  private setDefaultValue() {
+    if (this.key && this.key.trim()) {
       const message = {
           message: this.message,
           show: this.show
