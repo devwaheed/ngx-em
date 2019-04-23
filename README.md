@@ -1,24 +1,72 @@
 # NgxAem
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
+A simple libary for show error messages
 
-## Code scaffolding
+## Example
 
-Run `ng generate component component-name --project ngx-aem` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-aem`.
-> Note: Don't forget to add `--project ngx-aem` or else it will be added to the default project in your `angular.json` file. 
+First import ngx-aem module in root of your app 
 
-## Build
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-Run `ng build ngx-aem` to build the project. The build artifacts will be stored in the `dist/` directory.
+import { AppComponent } from './app.component';
+import { NgxAemModule } from 'ngx-aem';
 
-## Publishing
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxAemModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-After building your library with `ng build ngx-aem`, go to the dist folder `cd dist/ngx-aem` and run `npm publish`.
+In Template
+```
+<ngx-aem key='noresult'>world is funny</ngx-aem>
+```
 
-## Running unit tests
+In Component
 
-Run `ng test ngx-aem` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+import { Component } from '@angular/core';
+import { AemService } from 'ngx-aem';
 
-## Further help
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  constructor(private aemService: AemService) {
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  toggleError() {
+    this.aemService.show('noresult');
+  }
+}
+```
+
+Thats all you need to use this library. Have fun
+
+## API
+
+### Aem Service
+
+Method | Description
+------------ | -------------
+show(keyName) |  show  message 
+hide(keyName) | hide  message
+toggleMessage(keyName) | toggle  message
+
+### Aem Message Component
+```
+  <ngx-aem key="'keyName'">message</ngx-aem>
+```
+Note: keyName is required
