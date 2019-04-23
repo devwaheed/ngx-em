@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AemService } from './aem.service';
 
 @Component({
-  selector: 'lib-ngx-aem',
+  selector: 'ngx-aem',
   template: `
     <div *ngIf="aemService.getValue(key).show">
       <ng-content></ng-content>
